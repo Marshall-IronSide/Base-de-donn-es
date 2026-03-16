@@ -55,3 +55,33 @@ SELECT clients.nom, comptes.type_compte, operations.type_operation, operations.m
 FROM operations
          INNER JOIN comptes ON operations.id_compte = comptes.id_compte
          INNER JOIN clients ON comptes.id_client = clients.id_client;
+
+SELECT id_compte, SUM(montant) AS total_operations
+FROM operations
+GROUP BY id_compte;
+
+SELECT id_compte, SUM(montant) AS total_depot
+FROM operations
+WHERE type_operation = 'Depot'
+GROUP BY id_compte;
+
+SELECT id_compte, COUNT(*) AS nombre_operations
+FROM operations
+GROUP BY id_compte;
+
+SELECT id_compte, COUNT(*) AS nombre_operations
+FROM operations
+GROUP BY id_compte
+HAVING COUNT(*) > 2;
+
+SELECT clients.nom, SUM(operations.montant) AS total_depot
+FROM operations
+         INNER JOIN comptes ON operations.id_compte = comptes.id_compte
+         INNER JOIN clients ON comptes.id_client = clients.id_client
+WHERE operations.type_operation = 'Depot'
+GROUP BY clients.nom
+HAVING SUM(operations.montant) > 50000;
+
+SELECT type_compte, AVG(solde) AS solde_moyen
+FROM comptes
+GROUP BY type_compte;
