@@ -2,7 +2,6 @@
 
 /*************************************************
 MINI APPLICATION PHP + MariaDB (CRUD + DDL)
-Auteur : Junior GODEVI (exemple pédagogique)
  **************************************************/
 // CONFIGURATION
 $host = "localhost";
